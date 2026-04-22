@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>娃哈哈30周年·AD钙奶口味人格测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f0f7f0 0%, #ffffff 50%, #fff5f5 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00A54F;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #E60012;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        h3 {
+            color: #00A54F;
+            margin-bottom: 15px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,165,79,0.1);
+            border: 2px solid #E60012;
+        }
+
+        .intro p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .intro .highlight {
+            color: #00A54F;
+            font-weight: bold;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #00A54F 0%, #008C3F 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,165,79,0.3);
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(135deg, #E60012 0%, #C20010 100%);
+            transform: scale(1.05);
+        }
+
+        .question {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,165,79,0.1);
+            margin-bottom: 20px;
+            border-left: 4px solid #00A54F;
+        }
+
+        .question h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #E8E8E8;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 1em;
+            background: #fafcf9;
+        }
+
+        .option:hover {
+            border-color: #00A54F;
+            background-color: #f0f7f0;
+        }
+
+        .option.selected {
+            border-color: #E60012;
+            background-color: #fff5f5;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .prev-btn {
+            background-color: #f0f7f0;
+            color: #00A54F;
+            border: 2px solid #00A54F;
+        }
+
+        .next-btn {
+            background-color: #00A54F;
+            color: white;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #00A54F 0%, #008C3F 100%);
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,165,79,0.15);
+            border: 2px solid #00A54F;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .result h2 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #00A54F;
+        }
+
+        .result .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #00A54F 0%, #008C3F 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(0,165,79,0.3);
+        }
+
+        .result img {
+            max-width: 280px;
+            height: auto;
+            border-radius: 15px;
+            margin: 10px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid #00A54F;
+            object-fit: contain;
+        }
+
+        .result h3 {
+            color: #00A54F;
+            margin: 10px 0;
+            font-size: 1.3em;
+        }
+
+        .video-section {
+            width: 100%;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #E8E8E8;
+        }
+
+        .video-section h3 {
+            color: #E60012;
+            margin-bottom: 15px;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 3px solid #00A54F;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .result p {
+            font-size: 1.05em;
+            margin: 10px 0;
+            color: #555;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .result #resultDescription {
+            width: 100%;
+            max-width: 600px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .result .message {
+            background: linear-gradient(135deg, #f0f7f0 0%, #E8FFE8 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 10px 0;
+            text-align: left;
+            border: 1px solid #00A54F;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .result .message p {
+            color: #E60012;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        
+
+        .restart-btn {
+            background: linear-gradient(135deg, #E60012 0%, #C20010 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(230,0,18,0.3);
+        }
+
+        .restart-btn:hover {
+            background: linear-gradient(135deg, #00A54F 0%, #008C3F 100%);
+            transform: scale(1.05);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #E8E8E8;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00A54F, #E60012);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #00A54F;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .question {
+                padding: 20px;
+            }
+
+            .option {
+                padding: 12px 15px;
+                font-size: 0.95em;
+            }
+
+            .result {
+                padding: 25px;
+            }
+
+            .result img {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="welcome" class="page active">
+            <h1>娃哈哈30周年<br>AD钙奶口味人格测试</h1>
+            <div class="intro">
+                <p>30年时光流转，AD钙奶从童年的课间零食变成了成年人的快乐解药。</p>
+                <p>每一种口味、每一个瓶型，都藏着你独一无二的性格密码。</p>
+                <p>请凭第一直觉选择最贴合自己的答案，无需纠结！</p>
+                <p class="highlight">最后根据你的选择，找到最懂你的那一瓶专属味道</p>
+                <button class="start-btn" onclick="startTest()">开始测试</button>
+            </div>
+        </div>
+
+        <div id="test" class="page">
+            <h1>AD钙奶口味人格测试</h1>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="questionContainer" class="question">
+                <h3 id="questionText">问题加载中...</h3>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev-btn" onclick="prevQuestion()" disabled>上一题</button>
+                <button class="nav-btn next-btn" onclick="nextQuestion()">下一题</button>
+            </div>
+        </div>
+
+        <div id="result" class="page">
+            <h1>测试结果</h1>
+            <div class="result">
+                <h2 id="resultTitle">结果加载中...</h2>
+                <div id="resultTag" class="tag"></div>
+                <img id="resultImage" src="" alt="测试结果">
+                <h3 id="resultType">专属口味</h3>
+                <div id="resultDescription"></div>
+                <div class="message">
+                    <p id="resultMessage"></p>
+                </div>
+                <div class="video-section">
+                    <h3>娃哈哈30周年宣传视频</h3>
+                    <div class="video-container">
+                        <video controls autoplay loop muted>
+                            <source src="images/AD钙.mp4" type="video/mp4">
+                            您的浏览器不支持视频播放。
+                        </video>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="restart-btn" onclick="restartTest()">重新测试</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                text: "提到娃哈哈AD钙奶，你脑海里第一个浮现的画面是？",
+                options: [
+                    { text: "小时候攥着零花钱，在小卖部冰柜里掏出的老瓶型经典款", value: "A" },
+                    { text: "现在便利店货架上，包装精致、颜值超高的新款", value: "B" },
+                    { text: "上学时，和同学分享一瓶，你一口我一口的热闹场景", value: "C" },
+                    { text: '加班/疲惫时，用来缓解压力的"快乐续命水"', value: "D" }
+                ]
+            },
+            {
+                text: "你喝AD钙奶的习惯，更偏向于哪种？",
+                options: [
+                    { text: "小瓶便携款（220ml），一次一瓶，喝完刚好不浪费", value: "A" },
+                    { text: "大瓶畅饮款（450ml），慢慢喝，能享受更久的快乐", value: "B" },
+                    { text: "看场景选择，出门带小瓶，宅家喝大瓶", value: "C" },
+                    { text: "偶尔喝，没有固定习惯，想起就喝", value: "D" }
+                ]
+            },
+            {
+                text: "面对AD钙奶的各种口味，你最倾向于？",
+                options: [
+                    { text: "只喝经典原味，永远不会踩雷，情怀大于一切", value: "A" },
+                    { text: "偏爱水果味（草莓、蜜桃），清甜爽口，颜值也高", value: "B" },
+                    { text: "喜欢功能款（胶原蛋白、乳酸菌），兼顾美味和健康", value: "C" },
+                    { text: "不挑口味，每款都能接受，随缘喝", value: "D" }
+                ]
+            },
+            {
+                text: "你喝饮品时，最看重的一点是？",
+                options: [
+                    { text: "口感纯粹，喝下去能找回小时候的感觉", value: "A" },
+                    { text: "颜值在线，拍照好看，适合发朋友圈", value: "B" },
+                    { text: "有额外营养，能补充能量或调理身体", value: "C" },
+                    { text: "价格实惠，性价比高，喝着不心疼", value: "D" }
+                ]
+            },
+            {
+                text: "你更喜欢哪种甜度的AD钙奶？",
+                options: [
+                    { text: "淡甜款，清爽不腻，喝多了也不会齁", value: "A" },
+                    { text: "中甜款，酸甜平衡，口感丰富有层次", value: "B" },
+                    { text: "偏甜款，浓郁香甜，一口就能获得幸福感", value: "C" },
+                    { text: "无所谓甜度，只要是AD钙奶的味道就喜欢", value: "D" }
+                ]
+            },
+            {
+                text: "聚会时，你会给大家推荐哪款AD钙奶？",
+                options: [
+                    { text: "经典原味，所有人都能接受，不会出错", value: "A" },
+                    { text: "水果味新款，颜值高，能带动聚会氛围", value: "B" },
+                    { text: "大瓶款，方便大家分着喝，热闹又省心", value: "C" },
+                    { text: "功能款，兼顾美味和健康，适合所有人", value: "D" }
+                ]
+            },
+            {
+                text: "你通常在什么场景下会喝AD钙奶？",
+                options: [
+                    { text: "工作/学习间隙，小酌一口，缓解疲惫、提神醒脑", value: "A" },
+                    { text: "宅家追剧、打游戏，搭配零食，快乐加倍", value: "B" },
+                    { text: "出门逛街、旅行，揣在包里，随时补充能量", value: "C" },
+                    { text: "早餐/加餐时，搭配主食，营养又解腻", value: "D" }
+                ]
+            },
+            {
+                text: '你对"老款AD钙奶"和"新款AD钙奶"的态度是？',
+                options: [
+                    { text: "偏爱老款，怀旧感拉满，喝的是童年回忆", value: "A" },
+                    { text: "偏爱新款，包装好看、口味新颖，更符合当下审美", value: "B" },
+                    { text: "两者都喜欢，老款念旧，新款尝鲜", value: "C" },
+                    { text: "不关注新旧，只要味道好就可以", value: "D" }
+                ]
+            },
+            {
+                text: "你觉得AD钙奶最吸引你的地方是？",
+                options: [
+                    { text: "童年情怀，喝一口就能回到小时候，治愈又温暖", value: "A" },
+                    { text: "口感独特，酸甜适中，是其他饮料替代不了的味道", value: "B" },
+                    { text: "颜值高、便携，不管是自己喝还是分享都合适", value: "C" },
+                    { text: "性价比高、成分健康，大人小孩都能喝", value: "D" }
+                ]
+            },
+            {
+                text: '如果让你给娃哈哈30周年选一款"本命AD钙奶"，你会优先考虑？',
+                options: [
+                    { text: "老瓶型经典原味，见证30年时光，最有纪念意义", value: "A" },
+                    { text: "新款水果味，代表新鲜与活力，贴合品牌焕新", value: "B" },
+                    { text: "大瓶畅饮款，适合和家人朋友分享，传递快乐", value: "C" },
+                    { text: "功能款，兼顾健康与美味，贴合当下生活理念", value: "D" }
+                ]
+            }
+        ];
+
+                const results = [
+            {
+                title: "经典原味220ml（老瓶型）",
+                tag: "童年初心守护者",
+                description: '你是骨子里念旧的人，重感情、长情，不喜欢复杂的变化，坚信"经典永不过时"。你怀念童年的纯粹与美好，对老物件、老味道有着特殊的执念。对你来说，AD钙奶不只是一瓶饮料，更是打开童年时光的钥匙，一口下去，就能回到那个蝉鸣阵阵、无忧无虑的夏天。',
+                message: "30年不变的经典味道，守护你永远纯粹的初心，陪你走过每一段时光。",
+                image: "images/220新AD.png"
+            },
+            {
+                title: "草莓味220ml（新瓶型）",
+                tag: "元气甜妹/甜弟·颜值党",
+                description: '你活泼开朗、乐观向上，自带阳光气场，走到哪里都是人群中的"开心果"。你喜欢新鲜事物，追求颜值与口感并存，对好看、有趣的东西毫无抵抗力。草莓味的清甜与新瓶型的精致，完美契合你的性格，喝一口就能元气满满，治愈所有不开心。',
+                message: "愿你永远像草莓味一样，甜而不腻、鲜活可爱，把日子过成自己喜欢的样子。",
+                image: "images/220AD草莓味新瓶型.png"
+            },
+            {
+                title: "草莓味220ml（老瓶型）",
+                tag: "复古甜心·怀旧收藏家",
+                description: '你既有少女/少年的甜美软萌，又有对旧时光的深深眷恋。你喜欢复古的质感，对老包装、老味道有着特殊的偏爱，习惯在细节里寻找时光的痕迹。老瓶型的草莓味AD钙奶，既有童年的怀旧感，又有草莓的清甜，是专属于你的"复古浪漫"。',
+                message: "时光会老，美好不变，这瓶复古草莓味，藏着你最珍贵的童年回忆。",
+                image: "images/220AD草莓味AD瓶型.png"
+            },
+            {
+                title: "蜜桃味220ml（新瓶型）",
+                tag: "温柔治愈系·气质派",
+                description: "你性格温柔、心思细腻，待人真诚，自带治愈气场，总是能默默温暖身边的人。你不喜欢吵闹，偏爱安静舒适的生活，追求简约而有质感的事物。蜜桃的清甜柔和，搭配新瓶型的清新设计，和你的气质完美契合，喝一口，连时光都变得温柔起来。",
+                message: "温柔是最好的底色，30年陪伴，愿你被世界温柔以待，也能温柔待世界。",
+                image: "images/220AD蜜桃味新瓶型.png"
+            },
+            {
+                title: "蜜桃味220ml（老瓶型）",
+                tag: "温柔怀旧派·长情者",
+                description: "你慢热但长情，温柔且坚定，对人对事都很专一，不轻易改变自己的喜好。你既有柔软的内心，又有怀旧的灵魂，喜欢在熟悉的味道里寻找安全感。老瓶型的蜜桃味AD钙奶，既有经典的质感，又有蜜桃的温柔，就像你一样，平淡却足够美好。",
+                message: "长情是最动人的陪伴，30年，我们一起留住温柔，留住初心。",
+                image: "images/220AD蜜桃味AD瓶型.png"
+            },
+            {
+                title: "草莓味450ml",
+                tag: "活力满满·行动派",
+                description: '你精力充沛、热情似火，做事果断、不拖泥带水，永远充满干劲和活力。你喜欢热闹，追求"畅饮"的快乐，不喜欢拘小节，想到什么就去做什么。大瓶草莓味的浓郁香甜，能给你持续的能量，搭配大容量的满足感，完美适配你活力四射的性格。',
+                message: "愿你的活力永不消退，像大瓶草莓味一样，源源不断，奔赴每一场热爱。",
+                image: "images/450草莓味.png"
+            },
+            {
+                title: "水蜜桃味450ml",
+                tag: "优雅大方·精致派",
+                description: "你优雅大方、气质出众，注重生活品质，追求精致而舒适的生活方式。你待人温和、处事从容，有着自己的审美和节奏，不盲目跟风。大瓶水蜜桃味的清甜爽口，搭配大容量的便捷性，既能满足你对口感的需求，又能彰显你的精致气质，随时随地都能保持优雅。",
+                message: "优雅永不过时，快乐永不打烊，30年，陪你一起解锁精致生活。",
+                image: "images/450水蜜桃味.png"
+            },
+            {
+                title: "经典原味450ml",
+                tag: "快乐畅饮达人·坦率派",
+                description: '你性格豪爽、不拘小节，待人真诚坦率，不喜欢拐弯抹角，追求简单纯粹的快乐。你不挑剔、不纠结，凡事喜欢"随心而为"，喝饮料也偏爱最纯粹的味道。大瓶经典原味AD钙奶，一口下去满满的童年回忆，畅饮的快乐，能瞬间治愈所有疲惫。',
+                message: "30年，简单的快乐从未改变，愿你永远坦率自在，畅饮每一份美好。",
+                image: "images/450新AD.png"
+            },
+            {
+                title: "胶原蛋白味450ml",
+                tag: "精致养生达人·自律派",
+                description: '你注重生活品质，追求"美味与健康并存"，对自己有明确的要求，愿意为更好的自己付出努力。你精致、自律，喜欢尝试有营养的事物，不盲目追求口感，更看重饮品的实用性。胶原蛋白味AD钙奶，既能满足你对美味的需求，又能补充营养，是你精致生活的不二之选。',
+                message: "30年陪伴，不止于美味，更懂你的精致与热爱，陪你一起变更好。",
+                image: "images/450新AD胶原蛋白.png"
+            },
+            {
+                title: "乳酸菌味450ml",
+                tag: "健康活力派·尝鲜者",
+                description: '你热爱生活、积极乐观，对未来充满期待，喜欢尝试新鲜事物，不局限于固定的喜好。你注重健康，追求"轻松养生"，不刻意、不勉强，希望在享受美味的同时，也能收获健康。乳酸菌味AD钙奶，酸甜可口、易于消化，既能满足你的尝鲜欲，又能守护你的健康，让你每天都充满活力。',
+                message: "30年焕新前行，愿你永远保持好奇，在健康与快乐中，奔赴下一段旅程。",
+                image: "images/450新AD乳酸菌.png"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        function startTest() {
+            showPage('test');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').textContent = `问题 ${currentQuestion + 1}/${questions.length}: ${question.text}`;
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = option.text;
+                optionElement.onclick = () => selectOption(index, option.value);
+
+                if (answers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                }
+
+                optionsContainer.appendChild(optionElement);
+            });
+
+            updateProgress();
+            updateNavigationButtons();
+        }
+
+        function selectOption(index, value) {
+            answers[currentQuestion] = index;
+
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, i) => {
+                if (i === index) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+
+        function nextQuestion() {
+            if (answers[currentQuestion] === undefined) {
+                alert('请选择一个选项');
+                return;
+            }
+            
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                calculateResult();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+
+            prevBtn.disabled = currentQuestion === 0;
+
+            if (currentQuestion === questions.length - 1) {
+                nextBtn.textContent = '提交测试';
+                nextBtn.className = 'nav-btn submit-btn';
+            } else {
+                nextBtn.textContent = '下一题';
+                nextBtn.className = 'nav-btn next-btn';
+            }
+        }
+
+        function calculateResult() {
+            const questionWeights = [
+                [0, 1, 4, 5],
+                [0, 3, 1, 6],
+                [0, 1, 2, 7],
+                [0, 1, 2, 8],
+                [0, 1, 4, 9],
+                [0, 1, 3, 2],
+                [0, 6, 5, 7],
+                [0, 1, 4, 9],
+                [0, 1, 5, 8],
+                [0, 1, 3, 9]
+            ];
+
+            let scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            answers.forEach((answerIndex, qIndex) => {
+                const optionValue = questions[qIndex].options[answerIndex].value;
+                const weights = questionWeights[qIndex];
+
+                if (optionValue === "A") {
+                    scores[weights[0]] += 4;
+                } else if (optionValue === "B") {
+                    scores[weights[1]] += 3;
+                } else if (optionValue === "C") {
+                    scores[weights[2]] += 2;
+                } else {
+                    scores[weights[3]] += 1;
+                }
+            });
+
+            let maxScore = 0;
+            let finalResultIndex = 0;
+            scores.forEach((score, index) => {
+                if (score > maxScore) {
+                    maxScore = score;
+                    finalResultIndex = index;
+                }
+            });
+
+            displayResult(results[finalResultIndex]);
+        }
+
+        function displayResult(result) {
+            document.getElementById('resultTitle').textContent = result.title;
+            document.getElementById('resultTag').textContent = result.tag;
+            document.getElementById('resultImage').src = result.image;
+            document.getElementById('resultImage').onerror = function() {
+                this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="280" height="400" viewBox="0 0 280 400"><rect fill="%23fff0f0" width="280" height="400"/><text x="140" y="200" text-anchor="middle" fill="%23ff6b6b" font-size="16">' + result.title + '</text></svg>';
+            };
+            document.getElementById('resultType').textContent = result.tag;
+            document.getElementById('resultDescription').innerHTML = `<p>${result.description}</p>`;
+            document.getElementById('resultMessage').textContent = result.message;
+            showPage('result');
+        }
+
+        function showVideo() {
+            showPage('video');
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            answers = [];
+            showPage('welcome');
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
