@@ -12,8 +12,11 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f0f7f0 0%, #ffffff 50%, #fff5f5 100%);
+            margin: 0;
+            padding: 0;
+            font-family: 'YouYuan', '幼圆', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+            min-height: 100vh;
             color: #333;
             line-height: 1.6;
         }
@@ -26,27 +29,28 @@
 
         h1 {
             text-align: center;
-            color: #00A54F;
+            color: #16994e;
             margin-bottom: 30px;
             font-size: 2.2em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            font-weight: bold;
         }
 
         h2 {
             text-align: center;
-            color: #E60012;
+            color: #e1472b;
             margin-bottom: 20px;
             font-size: 1.5em;
         }
 
         h3 {
-            color: #00A54F;
+            color: #333;
             margin-bottom: 15px;
+            font-size: 1.1em;
         }
 
         .page {
             display: none;
-            animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.3s ease;
         }
 
         .page.active {
@@ -54,63 +58,58 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .intro {
             text-align: center;
-            margin-bottom: 40px;
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,165,79,0.1);
-            border: 2px solid #E60012;
+            margin-bottom: 20px;
+            padding: 10px 20px;
         }
 
         .intro p {
-            font-size: 1.1em;
-            margin-bottom: 15px;
-            color: #555;
+            font-size: 1.05em;
+            margin-bottom: 10px;
+            color: #333;
         }
 
         .intro .highlight {
-            color: #00A54F;
+            color: #16994e;
             font-weight: bold;
         }
 
         .start-btn {
-            background: linear-gradient(135deg, #00A54F 0%, #008C3F 100%);
+            background: #16994e;
             color: white;
             border: none;
             padding: 15px 40px;
-            font-size: 1.2em;
-            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0,165,79,0.3);
         }
 
         .start-btn:hover {
-            background: linear-gradient(135deg, #E60012 0%, #C20010 100%);
-            transform: scale(1.05);
+            background: #e1472b;
+            transform: scale(1.02);
         }
 
         .question {
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,165,79,0.1);
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
             margin-bottom: 20px;
-            border-left: 4px solid #00A54F;
         }
 
         .question h3 {
             margin-bottom: 20px;
-            color: #333;
-            font-size: 1.2em;
-            line-height: 1.5;
+            color: #16994e;
+            font-size: 1.1em;
+            line-height: 1.6;
+            font-weight: bold;
         }
 
         .options {
@@ -120,24 +119,58 @@
         }
 
         .option {
-            padding: 15px 20px;
-            border: 2px solid #E8E8E8;
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            border: 2px solid #eaedec;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
+            transition: all 0.2s ease;
             font-size: 1em;
-            background: #fafcf9;
+            background: white;
         }
 
         .option:hover {
-            border-color: #00A54F;
-            background-color: #f0f7f0;
+            border-color: #16994e;
         }
 
         .option.selected {
-            border-color: #E60012;
-            background-color: #fff5f5;
+            border-color: #16994e;
+            background: rgba(22, 153, 78, 0.08);
+        }
+
+        .option-radio {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            margin-right: 14px;
+            flex-shrink: 0;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .option.selected .option-radio {
+            border-color: #16994e;
+            background: #16994e;
+        }
+
+        .option.selected .option-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .option-text {
+            color: #333;
+            flex: 1;
+            font-weight: 500;
         }
 
         .nav-buttons {
@@ -152,22 +185,23 @@
             border-radius: 25px;
             cursor: pointer;
             font-size: 1em;
+            font-weight: bold;
             transition: all 0.3s ease;
         }
 
         .prev-btn {
-            background-color: #f0f7f0;
-            color: #00A54F;
-            border: 2px solid #00A54F;
+            background-color: #eaedec;
+            color: #16994e;
+            border: 2px solid #16994e;
         }
 
         .next-btn {
-            background-color: #00A54F;
+            background-color: #16994e;
             color: white;
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #00A54F 0%, #008C3F 100%);
+            background: linear-gradient(135deg, #16994e 0%, #16994e 100%);
             color: white;
         }
 
@@ -187,7 +221,7 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0,165,79,0.15);
-            border: 2px solid #00A54F;
+            border: 2px solid #16994e;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -197,12 +231,13 @@
         .result h2 {
             margin: 0;
             font-size: 1.8em;
-            color: #00A54F;
+            color: #16994e;
+            font-weight: bold;
         }
 
         .result .tag {
             display: inline-block;
-            background: linear-gradient(135deg, #00A54F 0%, #008C3F 100%);
+            background: linear-gradient(135deg, #16994e 0%, #16994e 100%);
             color: white;
             padding: 10px 25px;
             border-radius: 30px;
@@ -218,33 +253,50 @@
             border-radius: 15px;
             margin: 10px 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #00A54F;
+            border: 3px solid #16994e;
             object-fit: contain;
         }
 
         .result h3 {
-            color: #00A54F;
+            color: #16994e;
             margin: 10px 0;
             font-size: 1.3em;
+            font-weight: bold;
         }
 
         .video-section {
             width: 100%;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 2px solid #E8E8E8;
+            border-top: 2px solid #eaedec;
+        }
+
+        .video-intro {
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        .video-intro .video-container video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            border: 4px solid #16994e;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 5px 20px rgba(22, 153, 78, 0.3);
         }
 
         .video-section h3 {
-            color: #E60012;
+            color: #16994e;
             margin-bottom: 15px;
+            font-weight: bold;
         }
 
         .video-container video {
             width: 100%;
             max-width: 600px;
             border-radius: 10px;
-            border: 3px solid #00A54F;
+            border: 3px solid #16994e;
             display: block;
             margin: 0 auto;
         }
@@ -265,18 +317,18 @@
         }
 
         .result .message {
-            background: linear-gradient(135deg, #f0f7f0 0%, #E8FFE8 100%);
+            background: linear-gradient(135deg, #eaedec 0%, #ffffff 100%);
             padding: 20px;
             border-radius: 15px;
             margin: 10px 0;
             text-align: left;
-            border: 1px solid #00A54F;
+            border: 1px solid #16994e;
             width: 100%;
             max-width: 600px;
         }
 
         .result .message p {
-            color: #E60012;
+            color: #e1472b;
             font-weight: bold;
             margin: 0;
         }
@@ -292,7 +344,7 @@
         
 
         .restart-btn {
-            background: linear-gradient(135deg, #E60012 0%, #C20010 100%);
+            background: linear-gradient(135deg, #e1472b 0%, #e1472b 100%);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -305,7 +357,7 @@
         }
 
         .restart-btn:hover {
-            background: linear-gradient(135deg, #00A54F 0%, #008C3F 100%);
+            background: linear-gradient(135deg, #16994e 0%, #16994e 100%);
             transform: scale(1.05);
         }
 
@@ -316,54 +368,188 @@
             flex-wrap: wrap;
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background-color: #E8E8E8;
-            border-radius: 4px;
-            margin-bottom: 30px;
-            overflow: hidden;
+        .test-box{
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00A54F, #E60012);
-            border-radius: 4px;
-            transition: width 0.3s ease;
+        .questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .question-item {
+            scroll-margin-top: 70px;
+        }
+
+        .test-actions {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            padding: 18px 0 8px;
         }
 
         .footer {
             text-align: center;
             margin-top: 40px;
             padding: 20px;
-            color: #00A54F;
+            color: #16994e;
             font-size: 0.9em;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
+                padding: 12px;
             }
 
             h1 {
-                font-size: 1.8em;
+                font-size: 1.6em;
+                margin-bottom: 20px;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            h3 {
+                font-size: 1em;
+            }
+
+            .intro {
+                margin-bottom: 20px;
+            }
+
+            .intro p {
+                font-size: 1em;
+                margin-bottom: 12px;
+            }
+
+            .start-btn {
+                padding: 13px 35px;
+                font-size: 1em;
             }
 
             .question {
-                padding: 20px;
+                padding: 18px;
+                border-radius: 14px;
+                margin-bottom: 16px;
+            }
+
+            .question h3 {
+                margin-bottom: 16px;
+                font-size: 1em;
             }
 
             .option {
-                padding: 12px 15px;
+                padding: 12px 14px;
                 font-size: 0.95em;
             }
 
+            .option-radio {
+                width: 20px;
+                height: 20px;
+                margin-right: 12px;
+            }
+
             .result {
-                padding: 25px;
+                padding: 20px;
             }
 
             .result img {
-                max-width: 200px;
+                max-width: 180px;
+            }
+        }
+
+        .draggable-ball {
+            cursor: grab;
+            z-index: 1000;
+            opacity: 1;
+            animation: sway 1.8s ease-in-out infinite;
+        }
+
+        .bottle-wrapper {
+            position: relative;
+            width: 50px;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .bottle-wrapper.draggable-ball {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: auto;
+        }
+
+        .bottle-img {
+            width: 80px;
+            height: auto;
+            display: block;
+            pointer-events: none;
+        }
+
+        .bottle-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: url('images/剪影.png') center bottom no-repeat;
+            background-size: 100% auto;
+            transition: height 0.3s ease;
+            pointer-events: none;
+        }
+
+        .draggable-ball:active {
+            cursor: grabbing;
+            opacity: 1;
+            animation: none;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-5px) rotate(-2deg); }
+            75% { transform: translateX(5px) rotate(2deg); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .draggable-ball {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+            }
+
+            h1 {
+                font-size: 1.4em;
+            }
+
+            .intro {
+                padding: 20px 15px;
+            }
+
+            .question {
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            .option {
+                padding: 11px 12px;
+                font-size: 0.9em;
+            }
+
+            .option-radio {
+                width: 18px;
+                height: 18px;
+                margin-right: 10px;
             }
         }
     </style>
@@ -372,6 +558,14 @@
     <div class="container">
         <div id="welcome" class="page active">
             <h1>娃哈哈30周年<br>AD钙奶口味人格测试</h1>
+            <div class="video-intro">
+                <div class="video-container">
+                    <video controls autoplay loop muted>
+                        <source src="images/AD钙.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+            </div>
             <div class="intro">
                 <p>30年时光流转，AD钙奶从童年的课间零食变成了成年人的快乐解药。</p>
                 <p>每一种口味、每一个瓶型，都藏着你独一无二的性格密码。</p>
@@ -383,16 +577,14 @@
 
         <div id="test" class="page">
             <h1>AD钙奶口味人格测试</h1>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+            <div id="questionsList" class="questions-list"></div>
+            <div class="test-actions">
+                <button class="nav-btn prev-btn" onclick="goHome()">返回首页</button>
+                <button class="nav-btn submit-btn" onclick="submitTest()">提交并查看结果</button>
             </div>
-            <div id="questionContainer" class="question">
-                <h3 id="questionText">问题加载中...</h3>
-                <div class="options" id="optionsContainer"></div>
-            </div>
-            <div class="nav-buttons">
-                <button class="nav-btn prev-btn" onclick="prevQuestion()" disabled>上一题</button>
-                <button class="nav-btn next-btn" onclick="nextQuestion()">下一题</button>
+            <div class="bottle-wrapper draggable-ball" id="draggableBall">
+                <img src="images/黑色描边.png" alt="瓶身轮廓" class="bottle-img">
+                <div class="bottle-fill" id="bottleFill"></div>
             </div>
         </div>
 
@@ -406,15 +598,6 @@
                 <div id="resultDescription"></div>
                 <div class="message">
                     <p id="resultMessage"></p>
-                </div>
-                <div class="video-section">
-                    <h3>娃哈哈30周年宣传视频</h3>
-                    <div class="video-container">
-                        <video controls autoplay loop muted>
-                            <source src="images/AD钙.mp4" type="video/mp4">
-                            您的浏览器不支持视频播放。
-                        </video>
-                    </div>
                 </div>
                 <div class="btn-group">
                     <button class="restart-btn" onclick="restartTest()">重新测试</button>
@@ -590,90 +773,108 @@
             }
         ];
 
-        let currentQuestion = 0;
         let answers = [];
 
         function startTest() {
             showPage('test');
-            loadQuestion();
+            renderAllQuestions();
+
+            const ball = document.getElementById('draggableBall');
+            if (ball) {
+                ball.style.left = 'auto';
+                ball.style.top = 'auto';
+                ball.style.right = '30px';
+                ball.style.bottom = '30px';
+            }
+
+            updateBottleFill();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function loadQuestion() {
-            const question = questions[currentQuestion];
-            document.getElementById('questionText').textContent = `问题 ${currentQuestion + 1}/${questions.length}: ${question.text}`;
+        function renderAllQuestions() {
+            const list = document.getElementById('questionsList');
+            if (!list) return;
 
-            const optionsContainer = document.getElementById('optionsContainer');
-            optionsContainer.innerHTML = '';
+            if (!Array.isArray(answers) || answers.length !== questions.length) {
+                answers = new Array(questions.length).fill(undefined);
+            }
 
-            question.options.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'option';
-                optionElement.textContent = option.text;
-                optionElement.onclick = () => selectOption(index, option.value);
+            list.innerHTML = '';
 
-                if (answers[currentQuestion] === index) {
-                    optionElement.classList.add('selected');
-                }
+            questions.forEach((q, qIndex) => {
+                const card = document.createElement('div');
+                card.className = 'question question-item';
+                card.id = `q-${qIndex}`;
 
-                optionsContainer.appendChild(optionElement);
+                const title = document.createElement('h3');
+                title.textContent = `问题 ${qIndex + 1}：${q.text}`;
+                card.appendChild(title);
+
+                const opts = document.createElement('div');
+                opts.className = 'options';
+
+                q.options.forEach((opt, optIndex) => {
+                    const el = document.createElement('div');
+                    el.className = 'option';
+                    if (answers[qIndex] === optIndex) el.classList.add('selected');
+                    
+                    const radio = document.createElement('div');
+                    radio.className = 'option-radio';
+                    el.appendChild(radio);
+                    
+                    const text = document.createElement('span');
+                    text.className = 'option-text';
+                    text.textContent = opt.text;
+                    el.appendChild(text);
+                    
+                    el.onclick = () => selectOption(qIndex, optIndex);
+                    opts.appendChild(el);
+                });
+
+                card.appendChild(opts);
+                list.appendChild(card);
             });
-
-            updateProgress();
-            updateNavigationButtons();
         }
 
-        function selectOption(index, value) {
-            answers[currentQuestion] = index;
+        function selectOption(questionIndex, optionIndex) {
+            answers[questionIndex] = optionIndex;
 
-            const options = document.querySelectorAll('.option');
-            options.forEach((option, i) => {
-                if (i === index) {
-                    option.classList.add('selected');
-                } else {
-                    option.classList.remove('selected');
-                }
-            });
+            const card = document.getElementById(`q-${questionIndex}`);
+            if (card) {
+                const options = card.querySelectorAll('.option');
+                options.forEach((opt, idx) => {
+                    if (idx === optionIndex) opt.classList.add('selected');
+                    else opt.classList.remove('selected');
+                });
+            }
+
+            updateBottleFill();
         }
 
-        function nextQuestion() {
-            if (answers[currentQuestion] === undefined) {
-                alert('请选择一个选项');
+        function updateBottleFill() {
+            const bottleFill = document.getElementById('bottleFill');
+            if (!bottleFill) return;
+            const total = questions.length;
+            const done = answers.filter(v => v !== undefined).length;
+            const progress = total === 0 ? 0 : (done / total) * 100;
+            bottleFill.style.height = `${progress}%`;
+        }
+
+        function goHome() {
+            showPage('welcome');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function submitTest() {
+            const missingIndex = answers.findIndex(v => v === undefined);
+            if (missingIndex !== -1) {
+                alert(`还有题目没做完：第 ${missingIndex + 1} 题`);
+                const el = document.getElementById(`q-${missingIndex}`);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 return;
             }
-            
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                loadQuestion();
-            } else {
-                calculateResult();
-            }
-        }
-
-        function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                loadQuestion();
-            }
-        }
-
-        function updateProgress() {
-            const progress = ((currentQuestion + 1) / questions.length) * 100;
-            document.getElementById('progressFill').style.width = `${progress}%`;
-        }
-
-        function updateNavigationButtons() {
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-
-            prevBtn.disabled = currentQuestion === 0;
-
-            if (currentQuestion === questions.length - 1) {
-                nextBtn.textContent = '提交测试';
-                nextBtn.className = 'nav-btn submit-btn';
-            } else {
-                nextBtn.textContent = '下一题';
-                nextBtn.className = 'nav-btn next-btn';
-            }
+            calculateResult();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function calculateResult() {
@@ -737,9 +938,89 @@
         }
 
         function restartTest() {
-            currentQuestion = 0;
             answers = [];
             showPage('welcome');
+        }
+
+        function initDraggableBall() {
+            const ball = document.getElementById('draggableBall');
+            if (!ball) return;
+
+            let isDragging = false;
+            let startX, startY, initialX, initialY;
+
+            ball.addEventListener('mousedown', startDrag);
+            ball.addEventListener('touchstart', startDrag, { passive: false });
+
+            function startDrag(e) {
+                isDragging = true;
+                ball.style.cursor = 'grabbing';
+
+                if (e.type === 'touchstart') {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                } else {
+                    startX = e.clientX;
+                    startY = e.clientY;
+                }
+
+                const rect = ball.getBoundingClientRect();
+                initialX = rect.left;
+                initialY = rect.top;
+
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('touchmove', drag, { passive: false });
+                document.addEventListener('mouseup', stopDrag);
+                document.addEventListener('touchend', stopDrag);
+
+                e.preventDefault();
+            }
+
+            function drag(e) {
+                if (!isDragging) return;
+
+                let currentX, currentY;
+                if (e.type === 'touchmove') {
+                    currentX = e.touches[0].clientX;
+                    currentY = e.touches[0].clientY;
+                } else {
+                    currentX = e.clientX;
+                    currentY = e.clientY;
+                }
+
+                const deltaX = currentX - startX;
+                const deltaY = currentY - startY;
+
+                ball.style.left = `${initialX + deltaX}px`;
+                ball.style.top = `${initialY + deltaY}px`;
+                ball.style.right = 'auto';
+                ball.style.bottom = 'auto';
+
+                e.preventDefault();
+            }
+
+            function stopDrag() {
+                isDragging = false;
+                ball.style.cursor = 'grab';
+                document.removeEventListener('mousemove', drag);
+                document.removeEventListener('touchmove', drag);
+                document.removeEventListener('mouseup', stopDrag);
+                document.removeEventListener('touchend', stopDrag);
+                constrainToViewport();
+            }
+
+            function constrainToViewport() {
+                const rect = ball.getBoundingClientRect();
+                const maxX = window.innerWidth - rect.width;
+                const maxY = window.innerHeight - rect.height;
+
+                if (rect.left > maxX) ball.style.left = `${maxX}px`;
+                if (rect.top > maxY) ball.style.top = `${maxY}px`;
+                if (rect.left < 0) ball.style.left = '0px';
+                if (rect.top < 0) ball.style.top = '0px';
+            }
+
+            window.addEventListener('resize', constrainToViewport);
         }
 
         function showPage(pageId) {
@@ -748,6 +1029,8 @@
             });
             document.getElementById(pageId).classList.add('active');
         }
+
+        document.addEventListener('DOMContentLoaded', initDraggableBall);
     </script>
 </body>
 </html>
