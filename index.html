@@ -58,14 +58,14 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .intro {
             text-align: center;
             margin-bottom: 20px;
-            padding: 10px 20px;
+            padding: 20px;
         }
 
         .intro p {
@@ -305,7 +305,7 @@
             font-size: 1.05em;
             margin: 10px 0;
             color: #555;
-            text-align: left;
+            text-align: center;
             line-height: 1.6;
         }
 
@@ -313,7 +313,7 @@
             width: 100%;
             max-width: 600px;
             margin: 10px 0;
-            text-align: left;
+            text-align: center;
         }
 
         .result .message {
@@ -321,7 +321,7 @@
             padding: 20px;
             border-radius: 15px;
             margin: 10px 0;
-            text-align: left;
+            text-align: center;
             border: 1px solid #16994e;
             width: 100%;
             max-width: 600px;
@@ -512,9 +512,8 @@
         }
 
         @keyframes sway {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            25% { transform: translateX(-5px) rotate(-2deg); }
-            75% { transform: translateX(5px) rotate(2deg); }
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-5px); }
         }
 
         @media (max-width: 480px) {
@@ -557,33 +556,28 @@
 <body>
     <div class="container">
         <div id="welcome" class="page active">
-            <h1>娃哈哈30周年<br>AD钙奶口味人格测试</h1>
+            <h1>30 周年限定<br>属于国人的 WBTI<br>（Wahaha Behaviour Test Inventory）</h1>
             <div class="video-intro">
                 <div class="video-container">
-                    <video controls autoplay loop muted>
+                    <video controls autoplay loop muted preload="none">
                         <source src="images/AD钙.mp4" type="video/mp4">
                         您的浏览器不支持视频播放。
                     </video>
                 </div>
             </div>
             <div class="intro">
-                <p>30年时光流转，AD钙奶从童年的课间零食变成了成年人的快乐解药。</p>
-                <p>每一种口味、每一个瓶型，都藏着你独一无二的性格密码。</p>
-                <p>请凭第一直觉选择最贴合自己的答案，无需纠结！</p>
-                <p class="highlight">最后根据你的选择，找到最懂你的那一瓶专属味道</p>
                 <button class="start-btn" onclick="startTest()">开始测试</button>
             </div>
         </div>
 
         <div id="test" class="page">
-            <h1>AD钙奶口味人格测试</h1>
             <div id="questionsList" class="questions-list"></div>
             <div class="test-actions">
                 <button class="nav-btn prev-btn" onclick="goHome()">返回首页</button>
                 <button class="nav-btn submit-btn" onclick="submitTest()">提交并查看结果</button>
             </div>
             <div class="bottle-wrapper draggable-ball" id="draggableBall">
-                <img src="images/黑色描边.png" alt="瓶身轮廓" class="bottle-img">
+                <img src="images/黑色描边.png" alt="瓶身轮廓" class="bottle-img" loading="lazy">
                 <div class="bottle-fill" id="bottleFill"></div>
             </div>
         </div>
@@ -593,7 +587,7 @@
             <div class="result">
                 <h2 id="resultTitle">结果加载中...</h2>
                 <div id="resultTag" class="tag"></div>
-                <img id="resultImage" src="" alt="测试结果">
+                <img id="resultImage" src="" alt="测试结果" loading="lazy">
                 <h3 id="resultType">专属口味</h3>
                 <div id="resultDescription"></div>
                 <div class="message">
@@ -609,165 +603,165 @@
     <script>
         const questions = [
             {
-                text: "提到娃哈哈AD钙奶，你脑海里第一个浮现的画面是？",
+                text: "周末独处时，你更倾向于？",
                 options: [
-                    { text: "小时候攥着零花钱，在小卖部冰柜里掏出的老瓶型经典款", value: "A" },
-                    { text: "现在便利店货架上，包装精致、颜值超高的新款", value: "B" },
-                    { text: "上学时，和同学分享一瓶，你一口我一口的热闹场景", value: "C" },
-                    { text: '加班/疲惫时，用来缓解压力的"快乐续命水"', value: "D" }
+                    { text: "翻看老照片、怀旧老歌，安静享受慢时光", value: "A" },
+                    { text: "约朋友出门逛街探店，全程热闹元气满满", value: "B" },
+                    { text: "宅家看复古老动漫，喜欢旧事物的氛围感", value: "C" },
+                    { text: "独自窝在角落追剧，不爱热闹，安静治愈", value: "D" }
                 ]
             },
             {
-                text: "你喝AD钙奶的习惯，更偏向于哪种？",
+                text: "面对陌生社交，你的状态是？",
                 options: [
-                    { text: "小瓶便携款（220ml），一次一瓶，喝完刚好不浪费", value: "A" },
-                    { text: "大瓶畅饮款（450ml），慢慢喝，能享受更久的快乐", value: "B" },
-                    { text: "看场景选择，出门带小瓶，宅家喝大瓶", value: "C" },
-                    { text: "偶尔喝，没有固定习惯，想起就喝", value: "D" }
+                    { text: "温和礼貌，分寸感十足，低调不争不抢", value: "A" },
+                    { text: "主动搭话，自来熟，天然的气氛担当", value: "B" },
+                    { text: "慢热腼腆，熟悉之后才会慢慢放开", value: "C" },
+                    { text: "容易害羞紧张，习惯默默观察他人", value: "D" }
                 ]
             },
             {
-                text: "面对AD钙奶的各种口味，你最倾向于？",
+                text: "挑选饮品时，你最看重什么？",
                 options: [
-                    { text: "只喝经典原味，永远不会踩雷，情怀大于一切", value: "A" },
-                    { text: "偏爱水果味（草莓、蜜桃），清甜爽口，颜值也高", value: "B" },
-                    { text: "喜欢功能款（胶原蛋白、乳酸菌），兼顾美味和健康", value: "C" },
-                    { text: "不挑口味，每款都能接受，随缘喝", value: "D" }
+                    { text: "经典老牌、味道纯粹，永远偏爱初心款", value: "A" },
+                    { text: "口味酸甜浓郁，颜值高、甜度拉满", value: "B" },
+                    { text: "复古包装 + 温柔口感，偏爱小众怀旧风", value: "C" },
+                    { text: "清淡柔和的果香，口感软糯不甜腻", value: "D" }
                 ]
             },
             {
-                text: "你喝饮品时，最看重的一点是？",
+                text: "团队相处中，你通常扮演的角色？",
                 options: [
-                    { text: "口感纯粹，喝下去能找回小时候的感觉", value: "A" },
-                    { text: "颜值在线，拍照好看，适合发朋友圈", value: "B" },
-                    { text: "有额外营养，能补充能量或调理身体", value: "C" },
-                    { text: "价格实惠，性价比高，喝着不心疼", value: "D" }
+                    { text: "默默兜底，稳重靠谱，是大家的定心丸", value: "A" },
+                    { text: "活泼好动，爱开玩笑，带动全场氛围", value: "B" },
+                    { text: "温柔倾听者，待人柔软，自带书卷气质", value: "C" },
+                    { text: "细心敏感，总能察觉他人的小情绪", value: "D" }
                 ]
             },
             {
-                text: "你更喜欢哪种甜度的AD钙奶？",
+                text: "更喜欢哪种穿搭风格？",
                 options: [
-                    { text: "淡甜款，清爽不腻，喝多了也不会齁", value: "A" },
-                    { text: "中甜款，酸甜平衡，口感丰富有层次", value: "B" },
-                    { text: "偏甜款，浓郁香甜，一口就能获得幸福感", value: "C" },
-                    { text: "无所谓甜度，只要是AD钙奶的味道就喜欢", value: "D" }
+                    { text: "简约干净，百搭基础款，耐看又低调", value: "A" },
+                    { text: "鲜亮色彩、甜美风格，元气感拉满", value: "B" },
+                    { text: "复古文艺风，低饱和复古配色", value: "C" },
+                    { text: "软糯浅色系，温柔软萌的慵懒风", value: "D" }
                 ]
             },
             {
-                text: "聚会时，你会给大家推荐哪款AD钙奶？",
+                text: "遇到烦恼时，你会如何调节？",
                 options: [
-                    { text: "经典原味，所有人都能接受，不会出错", value: "A" },
-                    { text: "水果味新款，颜值高，能带动聚会氛围", value: "B" },
-                    { text: "大瓶款，方便大家分着喝，热闹又省心", value: "C" },
-                    { text: "功能款，兼顾美味和健康，适合所有人", value: "D" }
+                    { text: "独自消化，冷静思考，慢慢自我释怀", value: "A" },
+                    { text: "倾诉吐槽，吃喝玩乐，用快乐治愈坏心情", value: "B" },
+                    { text: "慢下来放空，用安静的方式舒缓情绪", value: "C" },
+                    { text: "独自发呆，需要独处空间慢慢自愈", value: "D" }
                 ]
             },
             {
-                text: "你通常在什么场景下会喝AD钙奶？",
+                text: "对待生活的态度，更贴近？",
                 options: [
-                    { text: "工作/学习间隙，小酌一口，缓解疲惫、提神醒脑", value: "A" },
-                    { text: "宅家追剧、打游戏，搭配零食，快乐加倍", value: "B" },
-                    { text: "出门逛街、旅行，揣在包里，随时补充能量", value: "C" },
-                    { text: "早餐/加餐时，搭配主食，营养又解腻", value: "D" }
+                    { text: "踏实安稳，念旧专一，不喜欢频繁改变", value: "A" },
+                    { text: "热爱新鲜，勇于尝试，永远充满好奇心", value: "B" },
+                    { text: "温润平和，举止优雅，自带温柔气质", value: "C" },
+                    { text: "细腻柔软，共情力强，心思格外细腻", value: "D" }
                 ]
             },
             {
-                text: '你对"老款AD钙奶"和"新款AD钙奶"的态度是？',
+                text: "如果要分享零食，你会？",
                 options: [
-                    { text: "偏爱老款，怀旧感拉满，喝的是童年回忆", value: "A" },
-                    { text: "偏爱新款，包装好看、口味新颖，更符合当下审美", value: "B" },
-                    { text: "两者都喜欢，老款念旧，新款尝鲜", value: "C" },
-                    { text: "不关注新旧，只要味道好就可以", value: "D" }
+                    { text: "按需分享，大方稳重，照顾所有人感受", value: "A" },
+                    { text: "超大份分享，大方豪爽，主打尽兴快乐", value: "B" },
+                    { text: "小份温柔分享，礼貌又有分寸", value: "C" },
+                    { text: "小心翼翼分享，害怕打扰别人", value: "D" }
                 ]
             },
             {
-                text: "你觉得AD钙奶最吸引你的地方是？",
+                text: "审美偏好更偏向？",
                 options: [
-                    { text: "童年情怀，喝一口就能回到小时候，治愈又温暖", value: "A" },
-                    { text: "口感独特，酸甜适中，是其他饮料替代不了的味道", value: "B" },
-                    { text: "颜值高、便携，不管是自己喝还是分享都合适", value: "C" },
-                    { text: "性价比高、成分健康，大人小孩都能喝", value: "D" }
+                    { text: "简约经典，经久不衰，越简单越安心", value: "A" },
+                    { text: "活泼撞色、可爱设计，甜系少女风", value: "B" },
+                    { text: "复古文艺、老式插画，氛围感美学", value: "C" },
+                    { text: "柔和渐变、浅粉淡调，治愈系美感", value: "D" }
                 ]
             },
             {
-                text: '如果让你给娃哈哈30周年选一款"本命AD钙奶"，你会优先考虑？',
+                text: "你的内在性格关键词是？",
                 options: [
-                    { text: "老瓶型经典原味，见证30年时光，最有纪念意义", value: "A" },
-                    { text: "新款水果味，代表新鲜与活力，贴合品牌焕新", value: "B" },
-                    { text: "大瓶畅饮款，适合和家人朋友分享，传递快乐", value: "C" },
-                    { text: "功能款，兼顾健康与美味，贴合当下生活理念", value: "D" }
+                    { text: "怀旧、沉稳、温柔、专一", value: "A" },
+                    { text: "元气、热烈、开朗、鲜活", value: "B" },
+                    { text: "复古、内敛、娇憨、温柔", value: "C" },
+                    { text: "软萌、细腻、敏感、治愈", value: "D" }
                 ]
             }
         ];
 
-                const results = [
+        const results = [
             {
-                title: "经典原味220ml（老瓶型）",
-                tag: "童年初心守护者",
-                description: '你是骨子里念旧的人，重感情、长情，不喜欢复杂的变化，坚信"经典永不过时"。你怀念童年的纯粹与美好，对老物件、老味道有着特殊的执念。对你来说，AD钙奶不只是一瓶饮料，更是打开童年时光的钥匙，一口下去，就能回到那个蝉鸣阵阵、无忧无虑的夏天。',
+                title: "经典原味小瓶（铝盖）",
+                tag: "温柔怀旧学长",
+                description: "念旧专一，温和沉稳，是所有人的童年安心感。",
                 message: "30年不变的经典味道，守护你永远纯粹的初心，陪你走过每一段时光。",
                 image: "images/220新AD.png"
             },
             {
-                title: "草莓味220ml（新瓶型）",
-                tag: "元气甜妹/甜弟·颜值党",
-                description: '你活泼开朗、乐观向上，自带阳光气场，走到哪里都是人群中的"开心果"。你喜欢新鲜事物，追求颜值与口感并存，对好看、有趣的东西毫无抵抗力。草莓味的清甜与新瓶型的精致，完美契合你的性格，喝一口就能元气满满，治愈所有不开心。',
+                title: "新版草莓小瓶",
+                tag: "元气甜妹小太阳",
+                description: "阳光活泼甜度满分，天生热烈的气氛小太阳。",
                 message: "愿你永远像草莓味一样，甜而不腻、鲜活可爱，把日子过成自己喜欢的样子。",
                 image: "images/220AD草莓味新瓶型.png"
             },
             {
-                title: "草莓味220ml（老瓶型）",
-                tag: "复古甜心·怀旧收藏家",
-                description: '你既有少女/少年的甜美软萌，又有对旧时光的深深眷恋。你喜欢复古的质感，对老包装、老味道有着特殊的偏爱，习惯在细节里寻找时光的痕迹。老瓶型的草莓味AD钙奶，既有童年的怀旧感，又有草莓的清甜，是专属于你的"复古浪漫"。',
+                title: "复古铝盖草莓小瓶",
+                tag: "复古娇憨旧时光少女",
+                description: "复古内敛，娇憨温柔，自带老式浪漫氛围感。",
                 message: "时光会老，美好不变，这瓶复古草莓味，藏着你最珍贵的童年回忆。",
                 image: "images/220AD草莓味AD瓶型.png"
             },
             {
-                title: "蜜桃味220ml（新瓶型）",
-                tag: "温柔治愈系·气质派",
-                description: "你性格温柔、心思细腻，待人真诚，自带治愈气场，总是能默默温暖身边的人。你不喜欢吵闹，偏爱安静舒适的生活，追求简约而有质感的事物。蜜桃的清甜柔和，搭配新瓶型的清新设计，和你的气质完美契合，喝一口，连时光都变得温柔起来。",
+                title: "新版蜜桃小瓶",
+                tag: "软萌社恐蜜桃小天使",
+                description: "敏感细腻，温柔治愈，安静又贴心的软系人格。",
                 message: "温柔是最好的底色，30年陪伴，愿你被世界温柔以待，也能温柔待世界。",
                 image: "images/220AD蜜桃味新瓶型.png"
             },
             {
-                title: "蜜桃味220ml（老瓶型）",
-                tag: "温柔怀旧派·长情者",
-                description: "你慢热但长情，温柔且坚定，对人对事都很专一，不轻易改变自己的喜好。你既有柔软的内心，又有怀旧的灵魂，喜欢在熟悉的味道里寻找安全感。老瓶型的蜜桃味AD钙奶，既有经典的质感，又有蜜桃的温柔，就像你一样，平淡却足够美好。",
+                title: "复古铝盖蜜桃小瓶",
+                tag: "知性复古温柔姐姐",
+                description: "优雅淡然，共情力强，自带书卷气的治愈型人格。",
                 message: "长情是最动人的陪伴，30年，我们一起留住温柔，留住初心。",
                 image: "images/220AD蜜桃味AD瓶型.png"
             },
             {
-                title: "草莓味450ml",
-                tag: "活力满满·行动派",
-                description: '你精力充沛、热情似火，做事果断、不拖泥带水，永远充满干劲和活力。你喜欢热闹，追求"畅饮"的快乐，不喜欢拘小节，想到什么就去做什么。大瓶草莓味的浓郁香甜，能给你持续的能量，搭配大容量的满足感，完美适配你活力四射的性格。',
+                title: "450ml大瓶草莓",
+                tag: "阳光运动少年",
+                description: "外向豪爽精力充沛，大方开朗，永远热血鲜活。",
                 message: "愿你的活力永不消退，像大瓶草莓味一样，源源不断，奔赴每一场热爱。",
                 image: "images/450草莓味.png"
             },
             {
-                title: "水蜜桃味450ml",
-                tag: "优雅大方·精致派",
-                description: "你优雅大方、气质出众，注重生活品质，追求精致而舒适的生活方式。你待人温和、处事从容，有着自己的审美和节奏，不盲目跟风。大瓶水蜜桃味的清甜爽口，搭配大容量的便捷性，既能满足你对口感的需求，又能彰显你的精致气质，随时随地都能保持优雅。",
+                title: "450ml大瓶蜜桃",
+                tag: "慢热治愈温柔学长",
+                description: "包容温柔慢热细心，情绪稳定，自带柔软气场。",
                 message: "优雅永不过时，快乐永不打烊，30年，陪你一起解锁精致生活。",
                 image: "images/450水蜜桃味.png"
             },
             {
-                title: "经典原味450ml",
-                tag: "快乐畅饮达人·坦率派",
-                description: '你性格豪爽、不拘小节，待人真诚坦率，不喜欢拐弯抹角，追求简单纯粹的快乐。你不挑剔、不纠结，凡事喜欢"随心而为"，喝饮料也偏爱最纯粹的味道。大瓶经典原味AD钙奶，一口下去满满的童年回忆，畅饮的快乐，能瞬间治愈所有疲惫。',
+                title: "450ml大瓶原味",
+                tag: "沉稳可靠大家长大哥",
+                description: "成熟稳重踏实靠谱，沉稳内敛，是团队坚实后盾。",
                 message: "30年，简单的快乐从未改变，愿你永远坦率自在，畅饮每一份美好。",
                 image: "images/450新AD.png"
             },
             {
-                title: "胶原蛋白味450ml",
-                tag: "精致养生达人·自律派",
-                description: '你注重生活品质，追求"美味与健康并存"，对自己有明确的要求，愿意为更好的自己付出努力。你精致、自律，喜欢尝试有营养的事物，不盲目追求口感，更看重饮品的实用性。胶原蛋白味AD钙奶，既能满足你对美味的需求，又能补充营养，是你精致生活的不二之选。',
+                title: "450ml胶原蛋白款",
+                tag: "精致优雅都市姐姐",
+                description: "品味出众优雅自律，注重质感，精致且温柔。",
                 message: "30年陪伴，不止于美味，更懂你的精致与热爱，陪你一起变更好。",
                 image: "images/450新AD胶原蛋白.png"
             },
             {
-                title: "乳酸菌味450ml",
-                tag: "健康活力派·尝鲜者",
-                description: '你热爱生活、积极乐观，对未来充满期待，喜欢尝试新鲜事物，不局限于固定的喜好。你注重健康，追求"轻松养生"，不刻意、不勉强，希望在享受美味的同时，也能收获健康。乳酸菌味AD钙奶，酸甜可口、易于消化，既能满足你的尝鲜欲，又能守护你的健康，让你每天都充满活力。',
+                title: "450ml乳酸菌款",
+                tag: "调皮元气乐天顽童",
+                description: "调皮灵动乐观爱笑，清爽不沉闷，永远元气鲜活。",
                 message: "30年焕新前行，愿你永远保持好奇，在健康与快乐中，奔赴下一段旅程。",
                 image: "images/450新AD乳酸菌.png"
             }
@@ -878,46 +872,42 @@
         }
 
         function calculateResult() {
-            const questionWeights = [
-                [0, 1, 4, 5],
-                [0, 3, 1, 6],
-                [0, 1, 2, 7],
-                [0, 1, 2, 8],
-                [0, 1, 4, 9],
-                [0, 1, 3, 2],
-                [0, 6, 5, 7],
-                [0, 1, 4, 9],
-                [0, 1, 5, 8],
-                [0, 1, 3, 9]
-            ];
-
-            let scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            let countA = 0, countB = 0, countC = 0, countD = 0;
 
             answers.forEach((answerIndex, qIndex) => {
                 const optionValue = questions[qIndex].options[answerIndex].value;
-                const weights = questionWeights[qIndex];
-
-                if (optionValue === "A") {
-                    scores[weights[0]] += 4;
-                } else if (optionValue === "B") {
-                    scores[weights[1]] += 3;
-                } else if (optionValue === "C") {
-                    scores[weights[2]] += 2;
-                } else {
-                    scores[weights[3]] += 1;
-                }
+                if (optionValue === "A") countA++;
+                else if (optionValue === "B") countB++;
+                else if (optionValue === "C") countC++;
+                else if (optionValue === "D") countD++;
             });
 
-            let maxScore = 0;
-            let finalResultIndex = 0;
-            scores.forEach((score, index) => {
-                if (score > maxScore) {
-                    maxScore = score;
-                    finalResultIndex = index;
-                }
-            });
+            const total = countA + countB + countC + countD;
+            let resultIndex = 0;
 
-            displayResult(results[finalResultIndex]);
+            if (countA >= 8) {
+                resultIndex = 7;
+            } else if (countB >= 8) {
+                resultIndex = 5;
+            } else if (countA + countC >= total * 0.9 && Math.abs(countA - countC) <= 2) {
+                resultIndex = 4;
+            } else if (countD + countA >= total * 0.9 && Math.abs(countD - countA) <= 2) {
+                resultIndex = 6;
+            } else if (countC + countD >= total * 0.9) {
+                resultIndex = 8;
+            } else if (countB + countD >= total * 0.8) {
+                resultIndex = 9;
+            } else if (countA > countB && countA > countC && countA > countD) {
+                resultIndex = 0;
+            } else if (countB > countA && countB > countC && countB > countD) {
+                resultIndex = 1;
+            } else if (countC > countA && countC > countB && countC > countD) {
+                resultIndex = 2;
+            } else {
+                resultIndex = 3;
+            }
+
+            displayResult(results[resultIndex]);
         }
 
         function displayResult(result) {
