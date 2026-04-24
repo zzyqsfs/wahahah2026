@@ -58,8 +58,26 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            0% { opacity: 0; transform: translateY(10px) scaleY(0.95); }
+            20% { transform: translateY(5px) scaleY(1.02); }
+            40% { transform: translateY(2px) scaleY(0.98); }
+            60% { transform: translateY(1px) scaleY(1.01); }
+            80% { transform: translateY(0.5px) scaleY(0.99); }
+            100% { opacity: 1; transform: translateY(0) scaleY(1); }
+        }
+
+        @keyframes liquidFlow {
+            0% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-2px) scale(1.01); }
+            50% { transform: translateY(1px) scale(0.99); }
+            75% { transform: translateY(-1px) scale(1.005); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        @keyframes bubble {
+            0% { opacity: 0; transform: translateY(0) scale(0); }
+            50% { opacity: 0.8; transform: translateY(-10px) scale(1); }
+            100% { opacity: 0; transform: translateY(-20px) scale(0.8); }
         }
 
         .intro {
@@ -80,28 +98,34 @@
         }
 
         .start-btn {
-            background: #16994e;
+            background: linear-gradient(145deg, #16994e, #148a45);
             color: white;
             border: none;
             padding: 15px 40px;
             font-size: 1.1em;
             font-weight: bold;
-            border-radius: 25px;
+            border-radius: 28px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(22,153,78,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
         .start-btn:hover {
-            background: #e1472b;
-            transform: scale(1.02);
+            background: linear-gradient(145deg, #e1472b, #c63c24);
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 6px 16px rgba(225,71,43,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
         .question {
-            background: white;
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
             padding: 24px;
-            border-radius: 16px;
+            border-radius: 18px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(22,153,78,0.1);
+            position: relative;
+            z-index: 1;
         }
 
         .question h3 {
@@ -122,21 +146,25 @@
             display: flex;
             align-items: center;
             padding: 14px 18px;
-            border: 2px solid #eaedec;
-            border-radius: 12px;
+            border: 2px solid rgba(22,153,78,0.1);
+            border-radius: 14px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             font-size: 1em;
-            background: white;
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8);
         }
 
         .option:hover {
             border-color: #16994e;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(22,153,78,0.15), inset 0 1px 0 rgba(255,255,255,0.8);
         }
 
         .option.selected {
             border-color: #16994e;
-            background: rgba(22, 153, 78, 0.08);
+            background: linear-gradient(145deg, rgba(22, 153, 78, 0.1), rgba(22, 153, 78, 0.05));
+            box-shadow: 0 4px 12px rgba(22,153,78,0.2), inset 0 1px 0 rgba(255,255,255,0.8);
         }
 
         .option-radio {
@@ -182,55 +210,73 @@
         .nav-btn {
             padding: 12px 25px;
             border: none;
-            border-radius: 25px;
+            border-radius: 28px;
             cursor: pointer;
             font-size: 1em;
             font-weight: bold;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
         }
 
         .prev-btn {
-            background-color: #eaedec;
+            background: linear-gradient(145deg, #f8f9fa, #eaedec);
             color: #16994e;
-            border: 2px solid #16994e;
+            border: 2px solid rgba(22,153,78,0.2);
         }
 
         .next-btn {
-            background-color: #16994e;
+            background: linear-gradient(145deg, #16994e, #148a45);
             color: white;
+            box-shadow: 0 4px 12px rgba(22,153,78,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #16994e 0%, #16994e 100%);
+            background: linear-gradient(145deg, #16994e, #148a45);
             color: white;
+            box-shadow: 0 4px 12px rgba(22,153,78,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
         .nav-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
         }
 
         .nav-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
+        }
+
+        .result-box {
+            width: 90vw;
+            max-width: 500px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .result {
             text-align: center;
-            background-color: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,165,79,0.15);
-            border: 2px solid #16994e;
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
+            padding: 15px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0,165,79,0.15), inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(22,153,78,0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 5px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
         .result h2 {
             margin: 0;
-            font-size: 1.8em;
+            font-size: 1.2em;
             color: #16994e;
             font-weight: bold;
         }
@@ -239,17 +285,17 @@
             display: inline-block;
             background: linear-gradient(135deg, #16994e 0%, #16994e 100%);
             color: white;
-            padding: 10px 25px;
+            padding: 8px 20px;
             border-radius: 30px;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 5px 0;
             box-shadow: 0 4px 15px rgba(0,165,79,0.3);
         }
 
         .result img {
-            max-width: 280px;
-            height: auto;
+            max-width: 80%;
+            max-height: 40%;
             border-radius: 15px;
             margin: 10px 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -259,8 +305,8 @@
 
         .result h3 {
             color: #16994e;
-            margin: 10px 0;
-            font-size: 1.3em;
+            margin: 5px 0;
+            font-size: 1em;
             font-weight: bold;
         }
 
@@ -301,12 +347,22 @@
             margin: 0 auto;
         }
 
-        .result p {
-            font-size: 1.05em;
-            margin: 10px 0;
-            color: #555;
+        .result-page-title {
             text-align: center;
-            line-height: 1.6;
+            color: #16994e;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            padding: 10px 0;
+        }
+
+        .result p {
+            font-size: 0.9em;
+            margin: 5px 0;
+            color: #e1472b;
+            text-align: center;
+            line-height: 1.4;
+            font-weight: bold;
         }
 
         .result #resultDescription {
@@ -316,21 +372,77 @@
             text-align: center;
         }
 
-        .result .message {
-            background: linear-gradient(135deg, #eaedec 0%, #ffffff 100%);
+        .all-results-container {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 15px;
-            margin: 10px 0;
-            text-align: center;
-            border: 1px solid #16994e;
-            width: 100%;
-            max-width: 600px;
         }
 
-        .result .message p {
+        .result-card {
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(22,153,78,0.1);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .result-card .content {
+            flex: 1;
+        }
+
+        .result-card .image {
+            flex-shrink: 0;
+            width: 120px;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-card .image img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #16994e;
+            object-fit: contain;
+        }
+
+        .result-card h3 {
+            color: #16994e;
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .result-card .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #16994e 0%, #16994e 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin: 5px 0 15px 0;
+            box-shadow: 0 3px 10px rgba(0,165,79,0.3);
+        }
+
+        .result-card p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .result-card .description {
+            color: #555;
+        }
+
+        .result-card .message {
             color: #e1472b;
             font-weight: bold;
-            margin: 0;
         }
 
         .btn-group {
@@ -341,24 +453,34 @@
             margin-top: 20px;
         }
 
-        
+        .result-card.current-result {
+            border: 2px solid #16994e;
+            box-shadow: 0 6px 16px rgba(22,153,78,0.2);
+            background: linear-gradient(145deg, #f0f9f0, #ffffff);
+        }
+
+        .result-card.current-result h3 {
+            color: #16994e;
+            font-weight: bold;
+        }
 
         .restart-btn {
-            background: linear-gradient(135deg, #e1472b 0%, #e1472b 100%);
+            background: linear-gradient(145deg, #16994e, #148a45);
             color: white;
             border: none;
             padding: 15px 30px;
             font-size: 1.1em;
-            border-radius: 50px;
+            border-radius: 30px;
             cursor: pointer;
             margin-top: 30px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(230,0,18,0.3);
+            box-shadow: 0 4px 12px rgba(22,153,78,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
         .restart-btn:hover {
-            background: linear-gradient(135deg, #16994e 0%, #16994e 100%);
-            transform: scale(1.05);
+            background: linear-gradient(145deg, #e1472b, #c63c24);
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 6px 16px rgba(225,71,43,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
         .btn-group {
@@ -460,15 +582,17 @@
             }
 
             .result img {
-                max-width: 180px;
+                max-width: 70%;
+                max-height: 35%;
             }
         }
 
         .draggable-ball {
             cursor: grab;
-            z-index: 1000;
+            z-index: 9999;
             opacity: 1;
             animation: sway 1.8s ease-in-out infinite;
+            pointer-events: auto;
         }
 
         .bottle-wrapper {
@@ -501,8 +625,27 @@
             height: 0%;
             background: url('images/剪影.png') center bottom no-repeat;
             background-size: 100% auto;
-            transition: height 0.3s ease;
+            transition: height 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
             pointer-events: none;
+        }
+
+        .bottle-fill.filling {
+            animation: liquidFlow 0.5s ease-in-out infinite;
+        }
+
+        .bottle-fill.completed {
+            /* 移除闪烁动画 */
+        }
+
+        .draggable-ball.dragging {
+            animation: none;
+            transform: rotate(5deg);
+            transition: transform 0.1s ease;
+        }
+
+        .draggable-ball.releasing {
+            animation: none;
+            transition: transform 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
         }
 
         .draggable-ball:active {
@@ -583,19 +726,31 @@
         </div>
 
         <div id="result" class="page">
-            <h1>测试结果</h1>
-            <div class="result">
-                <h2 id="resultTitle">结果加载中...</h2>
-                <div id="resultTag" class="tag"></div>
-                <img id="resultImage" src="" alt="测试结果" loading="lazy">
-                <h3 id="resultType">专属口味</h3>
-                <div id="resultDescription"></div>
-                <div class="message">
+            <h1 class="result-page-title">测试结果</h1>
+            <div class="result-box">
+                <div class="result">
+                    <h2 id="resultTitle">结果加载中...</h2>
+                    <div id="resultTag" class="tag"></div>
+                    <img id="resultImage" src="" alt="测试结果" loading="lazy">
+                    <h3 id="resultType">专属口味</h3>
+                    <div id="resultDescription"></div>
                     <p id="resultMessage"></p>
                 </div>
-                <div class="btn-group">
-                    <button class="restart-btn" onclick="restartTest()">重新测试</button>
-                </div>
+            </div>
+            <div class="btn-group">
+                <button class="restart-btn" onclick="restartTest()">重新测试</button>
+                <button class="restart-btn" onclick="showAllResults()">查看所有结果</button>
+            </div>
+        </div>
+
+        <div id="allResults" class="page">
+            <h1 class="result-page-title">所有测试结果</h1>
+            <div class="all-results-container">
+                <div id="allResultsList"></div>
+            </div>
+            <div class="btn-group">
+                <button class="restart-btn" onclick="goHome()">返回首页</button>
+                <button class="restart-btn" onclick="showPage('result')">返回我的结果</button>
             </div>
         </div>
     </div>
@@ -700,70 +855,70 @@
                 tag: "温柔怀旧学长",
                 description: "念旧专一，温和沉稳，是所有人的童年安心感。",
                 message: "30年不变的经典味道，守护你永远纯粹的初心，陪你走过每一段时光。",
-                image: "images/220新AD.png"
+                image: "q版设计/1.png"
             },
             {
                 title: "新版草莓小瓶",
                 tag: "元气甜妹小太阳",
                 description: "阳光活泼甜度满分，天生热烈的气氛小太阳。",
                 message: "愿你永远像草莓味一样，甜而不腻、鲜活可爱，把日子过成自己喜欢的样子。",
-                image: "images/220AD草莓味新瓶型.png"
+                image: "q版设计/2.png"
             },
             {
                 title: "复古铝盖草莓小瓶",
                 tag: "复古娇憨旧时光少女",
                 description: "复古内敛，娇憨温柔，自带老式浪漫氛围感。",
                 message: "时光会老，美好不变，这瓶复古草莓味，藏着你最珍贵的童年回忆。",
-                image: "images/220AD草莓味AD瓶型.png"
+                image: "q版设计/3.png"
             },
             {
                 title: "新版蜜桃小瓶",
                 tag: "软萌社恐蜜桃小天使",
                 description: "敏感细腻，温柔治愈，安静又贴心的软系人格。",
                 message: "温柔是最好的底色，30年陪伴，愿你被世界温柔以待，也能温柔待世界。",
-                image: "images/220AD蜜桃味新瓶型.png"
+                image: "q版设计/4.png"
             },
             {
                 title: "复古铝盖蜜桃小瓶",
                 tag: "知性复古温柔姐姐",
                 description: "优雅淡然，共情力强，自带书卷气的治愈型人格。",
                 message: "长情是最动人的陪伴，30年，我们一起留住温柔，留住初心。",
-                image: "images/220AD蜜桃味AD瓶型.png"
+                image: "q版设计/5.png"
             },
             {
                 title: "450ml大瓶草莓",
                 tag: "阳光运动少年",
                 description: "外向豪爽精力充沛，大方开朗，永远热血鲜活。",
                 message: "愿你的活力永不消退，像大瓶草莓味一样，源源不断，奔赴每一场热爱。",
-                image: "images/450草莓味.png"
+                image: "q版设计/6.png"
             },
             {
                 title: "450ml大瓶蜜桃",
                 tag: "慢热治愈温柔学长",
                 description: "包容温柔慢热细心，情绪稳定，自带柔软气场。",
                 message: "优雅永不过时，快乐永不打烊，30年，陪你一起解锁精致生活。",
-                image: "images/450水蜜桃味.png"
+                image: "q版设计/7.png"
             },
             {
                 title: "450ml大瓶原味",
                 tag: "沉稳可靠大家长大哥",
                 description: "成熟稳重踏实靠谱，沉稳内敛，是团队坚实后盾。",
                 message: "30年，简单的快乐从未改变，愿你永远坦率自在，畅饮每一份美好。",
-                image: "images/450新AD.png"
+                image: "q版设计/8.png"
             },
             {
                 title: "450ml胶原蛋白款",
                 tag: "精致优雅都市姐姐",
                 description: "品味出众优雅自律，注重质感，精致且温柔。",
                 message: "30年陪伴，不止于美味，更懂你的精致与热爱，陪你一起变更好。",
-                image: "images/450新AD胶原蛋白.png"
+                image: "q版设计/9.png"
             },
             {
                 title: "450ml乳酸菌款",
                 tag: "调皮元气乐天顽童",
                 description: "调皮灵动乐观爱笑，清爽不沉闷，永远元气鲜活。",
                 message: "30年焕新前行，愿你永远保持好奇，在健康与快乐中，奔赴下一段旅程。",
-                image: "images/450新AD乳酸菌.png"
+                image: "q版设计/10.png"
             }
         ];
 
@@ -851,10 +1006,35 @@
             const total = questions.length;
             const done = answers.filter(v => v !== undefined).length;
             const progress = total === 0 ? 0 : (done / total) * 100;
-            bottleFill.style.height = `${progress}%`;
+            
+            const currentHeight = parseFloat(bottleFill.style.height) || 0;
+            
+            if (currentHeight === progress) {
+                return;
+            }
+            
+            bottleFill.classList.remove('filling', 'completed');
+            
+            if (progress < 100) {
+                bottleFill.classList.add('filling');
+            }
+            
+            setTimeout(() => {
+                bottleFill.style.height = `${progress}%`;
+                
+                setTimeout(() => {
+                    bottleFill.classList.remove('filling');
+                }, 500);
+            }, 50);
         }
 
         function goHome() {
+            answers = new Array(questions.length).fill(undefined);
+            const bottleFill = document.getElementById('bottleFill');
+            if (bottleFill) {
+                bottleFill.style.height = '0%';
+                bottleFill.classList.remove('filling', 'completed');
+            }
             showPage('welcome');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -910,7 +1090,10 @@
             displayResult(results[resultIndex]);
         }
 
+        let currentResult = null;
+
         function displayResult(result) {
+            currentResult = result;
             document.getElementById('resultTitle').textContent = result.title;
             document.getElementById('resultTag').textContent = result.tag;
             document.getElementById('resultImage').src = result.image;
@@ -928,7 +1111,12 @@
         }
 
         function restartTest() {
-            answers = [];
+            answers = new Array(questions.length).fill(undefined);
+            const bottleFill = document.getElementById('bottleFill');
+            if (bottleFill) {
+                bottleFill.style.height = '0%';
+                bottleFill.classList.remove('filling', 'completed');
+            }
             showPage('welcome');
         }
 
@@ -945,6 +1133,8 @@
             function startDrag(e) {
                 isDragging = true;
                 ball.style.cursor = 'grabbing';
+                ball.classList.add('dragging');
+                ball.classList.remove('releasing');
 
                 if (e.type === 'touchstart') {
                     startX = e.touches[0].clientX;
@@ -980,6 +1170,9 @@
 
                 const deltaX = currentX - startX;
                 const deltaY = currentY - startY;
+                
+                const rotation = (deltaX / 10) % 10;
+                ball.style.transform = `rotate(${rotation}deg)`;
 
                 ball.style.left = `${initialX + deltaX}px`;
                 ball.style.top = `${initialY + deltaY}px`;
@@ -992,6 +1185,15 @@
             function stopDrag() {
                 isDragging = false;
                 ball.style.cursor = 'grab';
+                ball.classList.remove('dragging');
+                ball.classList.add('releasing');
+                
+                ball.style.transform = 'rotate(0deg)';
+                
+                setTimeout(() => {
+                    ball.classList.remove('releasing');
+                }, 300);
+                
                 document.removeEventListener('mousemove', drag);
                 document.removeEventListener('touchmove', drag);
                 document.removeEventListener('mouseup', stopDrag);
@@ -1001,23 +1203,85 @@
 
             function constrainToViewport() {
                 const rect = ball.getBoundingClientRect();
+                
+                const minX = 0;
+                const minY = 0;
                 const maxX = window.innerWidth - rect.width;
                 const maxY = window.innerHeight - rect.height;
-
-                if (rect.left > maxX) ball.style.left = `${maxX}px`;
-                if (rect.top > maxY) ball.style.top = `${maxY}px`;
-                if (rect.left < 0) ball.style.left = '0px';
-                if (rect.top < 0) ball.style.top = '0px';
+                
+                let left = parseInt(ball.style.left) || 0;
+                let top = parseInt(ball.style.top) || 0;
+                
+                if (left < minX) left = minX;
+                if (top < minY) top = minY;
+                if (left > maxX) left = maxX;
+                if (top > maxY) top = maxY;
+                
+                ball.style.left = `${left}px`;
+                ball.style.top = `${top}px`;
             }
 
             window.addEventListener('resize', constrainToViewport);
         }
 
         function showPage(pageId) {
+            const video = document.querySelector('video');
+            
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
+            
+            if (video) {
+                if (pageId === 'welcome') {
+                    video.volume = 1.0;
+                    video.loop = true;
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                    video.volume = 0;
+                }
+            }
+        }
+
+        function showAllResults() {
+            const allResultsList = document.getElementById('allResultsList');
+            if (!allResultsList) return;
+            
+            allResultsList.innerHTML = '';
+            
+            const sortedResults = [...results];
+            if (currentResult) {
+                const currentIndex = sortedResults.findIndex(r => r.title === currentResult.title);
+                if (currentIndex > 0) {
+                    sortedResults.splice(currentIndex, 1);
+                    sortedResults.unshift(currentResult);
+                }
+            }
+            
+            sortedResults.forEach((result, index) => {
+                const resultCard = document.createElement('div');
+                resultCard.className = 'result-card';
+                if (currentResult && result.title === currentResult.title) {
+                    resultCard.classList.add('current-result');
+                }
+                
+                resultCard.innerHTML = `
+                    <div class="content">
+                        <h3>${result.title}</h3>
+                        <div class="tag">${result.tag}</div>
+                        <p class="description">${result.description}</p>
+                        <p class="message">${result.message}</p>
+                    </div>
+                    <div class="image">
+                        <img src="${result.image}" alt="${result.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22160%22 viewBox=%220 0 120 160%22%3E%3Crect fill=%22%23fff0f0%22 width=%22120%22 height=%22160%22/%3E%3Ctext x=%2260%22 y=%2280%22 text-anchor=%22middle%22 fill=%22%23ff6b6b%22 font-size=%2212%22%3E${encodeURIComponent(result.title)}%3C/text%3E%3C/svg%3E'">
+                    </div>
+                `;
+                
+                allResultsList.appendChild(resultCard);
+            });
+            
+            showPage('allResults');
         }
 
         document.addEventListener('DOMContentLoaded', initDraggableBall);
